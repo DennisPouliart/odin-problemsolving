@@ -13,8 +13,6 @@
 
         let humanScore = 0;
         let computerScore = 0;
-        let humanScoreCurrent = 0 + humanScore;
-        let computerScoreCurrent = 0 + computerScore;
         
         function getComputerChoice() {
             let number = Math.random();
@@ -43,13 +41,13 @@
             if (human == "rock" && computer == "rock" || human == "paper" && computer == "paper" || human == "scissors" && computer == "scissors") {
                 console.log(human + " vs " + computer + ", its a draw!")
             } else if (human == "rock" && computer == "paper" || human == "paper" && computer == "scissors" || human == "scissors" && computer == "rock") {
-                console.log("You lose! " + computer + " beats " + human + ".");
+                console.log("You lose! " + human + " beats " + computer + ".");
+                computerScore = computerScore + 1;
             } else {
                 console.log("You win! " + human + " beats " + computer + ".");
+                humanScore = humanScore + 1;
             }
         };
-
-        
 
         
 
@@ -57,7 +55,16 @@
             const humanSelection = getHumanChoice(human);
             const computerSelection = getComputerChoice(computer);
             playRound(humanSelection, computerSelection);
-            console.log(i);
+            console.log("You: " + humanScore + " Computer: " + computerScore);
+            if (i == 4) {
+                if (humanScore > computerScore) {
+                    console.log("Congratulations, you won!");
+                } else if (computerScore > humanScore) {
+                    console.log("Too bad, you lost!");
+                } else {
+                    console.log("Nice try, its a tie!");
+                }
+            }
         }
 
     </script>
