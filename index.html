@@ -12,19 +12,26 @@
         
         function getComputerChoice() {
             let number = Math.random();
+            let human = getHumanChoice();
             let computer;
 
             console.log(number);
 
             if (number <= 0.33) {
                 computer = "rock";
-            } else if (number > 0.33 && number <= 0.66) {
+                } else if (number > 0.33 && number <= 0.66) {
                 computer = "paper";
-            } else {
-                computer = "scissors"
-            };
+                    } else {
+                    computer = "scissors"
+                    };
 
-            console.log(computer);
+            console.log("computer: " + computer);
+        };
+        
+        function getHumanChoice() {
+            let human = window.prompt("Enter your choice:")
+            console.log("human: " + human);
+            return human;
         };
 
 
