@@ -13,7 +13,7 @@
         <p>Computer: <span id="computerScore">0</span></p>
         <p>Round <span id="currentRound">0</span> / 5</p>
     </div>
-    <div class="rps">
+    <div id="rps">
         <h2>Choose wisely:</h2>
         <button id="rock">rock</button>
         <button id="paper">paper</button>
@@ -27,11 +27,15 @@
 
         let humanScore = 0;
         let computerScore = 0;
+        let winningScore;
 
+        const div = document.querySelector('#rps')
         const buttons = document.querySelectorAll('button');
         const spanComputerScore = document.querySelector('#computerScore');
         const spanHumanScore = document.querySelector('#humanScore');
         const spanCurrentRound = document.querySelector('#currentRound');
+        const winner = document.createElement("h2");
+        const endMessage = document.createElement("p");
 
         buttons.forEach((button) => {
             button.addEventListener("click", () => {
@@ -47,8 +51,22 @@
                     spanHumanScore.textContent = humanScore;
                     spanCurrentRound.textContent = rounds;
 
-                } else {
+                    if (computerScore > humanScore) {
+                        winningScore = "Computer"
+                    } else if (humanScore > computerScore) {
+                        winningScore = "You"
+                    } else {
+                        winningScore = "Nobody"
+                    }
+
+                } if (rounds > 4) {
+
                     console.log("The game has ended, thanks for playing!");
+
+                    div.appendChild(winner);
+                    winner.textContent = winningScore + " won!";
+                    div.appendChild(endMessage);
+                    endMessage.textContent = "Thanks for playing the game!"
                 }
             })
         })
