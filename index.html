@@ -7,7 +7,14 @@
 </head>
 <body>
     <h1>Let's play!</h1>
+    <div class="score">
+        <h2>Score:</h2>
+        <p>You: <span id="humanScore">0</span></p>
+        <p>Computer: <span id="computerScore">0</span></p>
+        <p>Round <span id="currentRound">0</span> / 5</p>
+    </div>
     <div class="rps">
+        <h2>Choose wisely:</h2>
         <button id="rock">rock</button>
         <button id="paper">paper</button>
         <button id="scissors">scissors</button>
@@ -16,19 +23,33 @@
         let human;
         let computer;
         let i;
+        let rounds = 0;
 
         let humanScore = 0;
         let computerScore = 0;
 
         const buttons = document.querySelectorAll('button');
+        const spanComputerScore = document.querySelector('#computerScore');
+        const spanHumanScore = document.querySelector('#humanScore');
+        const spanCurrentRound = document.querySelector('#currentRound');
 
         buttons.forEach((button) => {
             button.addEventListener("click", () => {
-                let human = button.id;
+                if (rounds <= 4) {
+                    let human = button.id;
+                    let computer = getComputerChoice();
+                    playRound(human, computer);
+                    rounds = rounds + 1;
+                    console.log("ended, round: " + rounds);
+                    console.log("human: " + humanScore + " computer " + computerScore);
 
-                let computer = getComputerChoice();
+                    spanComputerScore.textContent = computerScore;
+                    spanHumanScore.textContent = humanScore;
+                    spanCurrentRound.textContent = rounds;
 
-                playRound(human, computer);
+                } else {
+                    console.log("The game has ended, thanks for playing!");
+                }
             })
         })
         
@@ -47,13 +68,6 @@
 
             return computer;
         };
-        
-        /*function getHumanChoice() {
-            let human = window.prompt("Enter your choice:")
-            return human;
-        };*/
-
-     
 
         function playRound(human, computer) {
             if (human == undefined || computer == undefined) {
@@ -69,25 +83,6 @@
                 humanScore = humanScore + 1;
             }
         };
-
-        
-
-        /*for (i=0; i<=4; i++) {
-            const humanSelection = getHumanChoice(human);
-            const computerSelection = getComputerChoice(computer);
-            playRound(humanSelection, computerSelection);
-            console.log("You: " + humanScore + " Computer: " + computerScore);
-            if (i == 4) {
-                if (humanScore > computerScore) {
-                    console.log("Congratulations, you won!");
-                } else if (computerScore > humanScore) {
-                    console.log("Too bad, you lost!");
-                } else {
-                    console.log("Nice try, its a tie!");
-                }
-            }
-        }*/
-
     </script>
 </body>
 </html>
