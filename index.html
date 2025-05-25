@@ -6,6 +6,12 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>Let's play!</h1>
+    <div class="rps">
+        <button class="rock">rock</button>
+        <button class="paper">paper</button>
+        <button class="scissors">scissors</button>
+    </div>
     <script>
         let human;
         let computer;
@@ -51,7 +57,7 @@
 
         
 
-        for (i=0; i<=4; i++) {
+        //for (i=0; i<=4; i++) {
             const humanSelection = getHumanChoice(human);
             const computerSelection = getComputerChoice(computer);
             playRound(humanSelection, computerSelection);
@@ -65,7 +71,7 @@
                     console.log("Nice try, its a tie!");
                 }
             }
-        }
+        //}
 
     </script>
 </body>
