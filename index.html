@@ -8,9 +8,9 @@
 <body>
     <h1>Let's play!</h1>
     <div class="rps">
-        <button class="rock">rock</button>
-        <button class="paper">paper</button>
-        <button class="scissors">scissors</button>
+        <button id="rock">rock</button>
+        <button id="paper">paper</button>
+        <button id="scissors">scissors</button>
     </div>
     <script>
         let human;
@@ -19,6 +19,18 @@
 
         let humanScore = 0;
         let computerScore = 0;
+
+        const buttons = document.querySelectorAll('button');
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                let human = button.id;
+
+                let computer = getComputerChoice();
+
+                playRound(human, computer);
+            })
+        })
         
         function getComputerChoice() {
             let number = Math.random();
@@ -36,18 +48,21 @@
             return computer;
         };
         
-        function getHumanChoice() {
+        /*function getHumanChoice() {
             let human = window.prompt("Enter your choice:")
             return human;
-        };
+        };*/
 
      
 
         function playRound(human, computer) {
-            if (human == "rock" && computer == "rock" || human == "paper" && computer == "paper" || human == "scissors" && computer == "scissors") {
+            if (human == undefined || computer == undefined) {
+                console.log("Oh no! Something when wrong!")
+            }
+            else if (human == "rock" && computer == "rock" || human == "paper" && computer == "paper" || human == "scissors" && computer == "scissors") {
                 console.log(human + " vs " + computer + ", its a draw!")
             } else if (human == "rock" && computer == "paper" || human == "paper" && computer == "scissors" || human == "scissors" && computer == "rock") {
-                console.log("You lose! " + human + " beats " + computer + ".");
+                console.log("You lose! " + computer + " beats " + human + ".");
                 computerScore = computerScore + 1;
             } else {
                 console.log("You win! " + human + " beats " + computer + ".");
@@ -57,7 +72,7 @@
 
         
 
-        //for (i=0; i<=4; i++) {
+        /*for (i=0; i<=4; i++) {
             const humanSelection = getHumanChoice(human);
             const computerSelection = getComputerChoice(computer);
             playRound(humanSelection, computerSelection);
@@ -71,7 +86,7 @@
                     console.log("Nice try, its a tie!");
                 }
             }
-        //}
+        }*/
 
     </script>
 </body>
